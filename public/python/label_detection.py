@@ -1,4 +1,3 @@
-import sys
 import pymupdf  # type: ignore
 
 
@@ -111,7 +110,3 @@ def get_room_label_positions(pdf_path):
                     roomLabel_to_pos[roomLabel] = RMNOLine_to_EndPoint[RMNOLine]
 
     return roomLabel_to_pos
-
-
-if __name__ == "__main__":
-    get_room_label_positions("public/uploads/" + sys.argv[1])

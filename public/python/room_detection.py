@@ -1,4 +1,3 @@
-import sys
 import pymupdf  # type: ignore
 from shapely import Polygon, LineString, GeometryCollection  # type: ignore
 
@@ -89,7 +88,3 @@ def get_room_polygons(pdf_path):
         allRoomPolygons.append(Polygon(rounded_exterior, rounded_interiors))
 
     return allRoomPolygons
-
-
-if __name__ == "__main__":
-    get_room_polygons("public/uploads/" + sys.argv[1])

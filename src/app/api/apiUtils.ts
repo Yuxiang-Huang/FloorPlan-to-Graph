@@ -5,13 +5,13 @@ export const getBuildingCode = (floorCode) => {
 };
 
 export const getJSONDirPath = (buildingCode) => {
-  return path.join(process.cwd(), "public", "json", buildingCode);
+  return path.join(process.cwd(), "tmp", "json", buildingCode);
 };
 
 export const getOutlineJsonFilePath = (floorCode) => {
   return path.join(
     process.cwd(),
-    "public",
+    "tmp",
     "json",
     getBuildingCode(floorCode),
     floorCode + "-outline.json"
@@ -21,7 +21,7 @@ export const getOutlineJsonFilePath = (floorCode) => {
 export const getGraphJsonFilePath = (floorCode) => {
   return path.join(
     process.cwd(),
-    "public",
+    "tmp",
     "json",
     getBuildingCode(floorCode),
     floorCode + "-graph.json"
@@ -29,5 +29,5 @@ export const getGraphJsonFilePath = (floorCode) => {
 };
 
 export const getPDFDirPath = () => {
-  return path.join(process.cwd(), "public", "pdf");
+  return path.join(process.cwd(), "tmp", "pdf");
 };

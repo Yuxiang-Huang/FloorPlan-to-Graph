@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { NextResponse } from "next/server";
+import { getPDFDirPath } from "../apiUtils";
 
 export async function POST(request: Request) {
   try {
@@ -9,9 +10,7 @@ export async function POST(request: Request) {
     const file = requestData.file;
 
     const floorPDFDirectory = path.join(
-      process.cwd(),
-      "public",
-      "pdf",
+      getPDFDirPath(),
       fileName.split("-")[0]
     );
 

@@ -127,7 +127,3 @@ if __name__ == "__main__":
         output.update(generate_graphs(corridorID, rooms[corridorID], density))
 
     print(json.dumps(output))
-
-    # f = open("public/json/" + sys.argv[1].replace(".pdf", "-graph.json"), "w+", encoding="utf8")
-    # f.write(json.dumps(output))
-    # f.close()
