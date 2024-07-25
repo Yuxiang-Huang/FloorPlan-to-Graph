@@ -178,13 +178,6 @@ const MainDisplay = ({ floorCode, idSelected, setIdSelected }: Props) => {
 
       const parsedRes = parsedBody.result;
 
-      if (parsedRes["floorCodeDNE"]) {
-        toast.warn(
-          "Couldn't add type and alias because this floor code does not exist in Nicolas-export.json!",
-          { autoClose: 5000 }
-        );
-      }
-
       setWidth(parsedRes["width"]);
       setHeight(parsedRes["height"]);
       setWalls(parsedRes["walls"]);

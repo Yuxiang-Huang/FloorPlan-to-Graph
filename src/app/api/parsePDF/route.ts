@@ -29,7 +29,6 @@ export async function POST(request: Request) {
       // extra fields to let frontend know how data is retrieved
       const dataJSON = JSON.parse(data);
       dataJSON["calculated"] = true;
-      delete dataJSON.floorCodeDNE;
 
       return new NextResponse(
         JSON.stringify({

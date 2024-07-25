@@ -6,7 +6,6 @@ from shapely import Point, Polygon, to_geojson  # type: ignore
 from door_utils import combine_doors, link_doors_with_rooms
 from label_detection import get_room_label_positions
 from room_detection import get_room_polygons
-from add_type_and_alias import add_type_and_alias
 
 
 def get_json_lines(shape):
@@ -69,7 +68,6 @@ def parse_pdf(pdf_path):
     if len(all_doors) == 0:
         output["doors"] = dict()
         output["roomlessDoors"] = list()
-        output["floorCodeDNE"] = True
         output["rooms"] = dict()
         output["graph"] = dict()
         print(json.dumps(output))
@@ -106,9 +104,9 @@ def parse_pdf(pdf_path):
         output["doors"], all_rooms
     )
 
-    output["floorCodeDNE"] = add_type_and_alias(
-        all_rooms, pdf_path.split("/")[-1].replace(".pdf", "")
-    )
+    for room in all_rooms.values():
+        room["type"] = ""
+        room["aliases"] = []
 
     for room in all_rooms.values():
         if "polygon" in room:
