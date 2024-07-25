@@ -44,7 +44,7 @@ const AddEdgeAcrossFloorsSection = ({ floorCode }: Props) => {
     // handle error
     if (!response.ok) {
       if (response.status == 500) {
-        console.log(body);
+        console.error(body);
       } else if (response.status == 400) {
         toast.error(body.error);
       }
@@ -119,7 +119,7 @@ const AddEdgeAcrossFloorsSection = ({ floorCode }: Props) => {
       // handle error
       if (!response.ok) {
         if (response.status == 500) {
-          console.log(body);
+          console.error(body);
         } else if (response.status == 400) {
           toast.error(body.error);
         }

@@ -167,7 +167,8 @@ const MainDisplay = ({ floorCode, idSelected, setIdSelected }: Props) => {
 
       // handle error
       if (!parseResponse.ok) {
-        console.log(parsedBody);
+        console.error(parsedBody.error);
+        setLoadingText("Failed to parse PDF! Check console for detailed error");
         return;
       }
 

@@ -18,7 +18,7 @@ const App: React.FC = () => {
 
       // handle error
       if (!response.ok) {
-        console.log(body);
+        console.error(body);
         return;
       }
 
