@@ -22,7 +22,7 @@ export async function POST(request: Request) {
       fileName.split("-")[0]
     );
 
-    // create floor plan pdf directory if it doesn't exist
+    // create floor pdf directory if it doesn't exist
     if (!fs.existsSync(FloorPlanPDFDirectory)) {
       fs.mkdirSync(FloorPlanPDFDirectory);
     }

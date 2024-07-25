@@ -1,5 +1,5 @@
 import React from "react";
-import { buildingCodeToName } from "./shared/buildingCodeToName";
+import { getBuildingName } from "./shared/buildingCodeToName";
 import Link from "next/link";
 
 interface Props {
@@ -14,7 +14,7 @@ const NavBar = ({ buildingCode }: Props) => {
           CMU Maps Data Visualization
         </div>
         <div className="h-7 -translate-x-1/2 text-xl text-white">
-          {buildingCodeToName[buildingCode]}
+          {getBuildingName(buildingCode)}
         </div>
         <Link
           href={"/"}

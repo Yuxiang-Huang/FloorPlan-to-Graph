@@ -10,6 +10,7 @@ import {
   getOutlineJsonFilePath,
 } from "../apiUtils";
 import { ALWAYS_REGENERATE } from "../../../API-Settings";
+import path from "path";
 
 export async function POST(request: Request) {
   try {
@@ -61,10 +62,16 @@ export async function POST(request: Request) {
 
     const parsedJSON = JSON.parse(stdout);
 
-    // create dir if it doesn't exist
-    const dir = getJSONDirPath(buildingCode);
+    // create json directory if it doesn't exist
+    const dir = path.join(process.cwd(), "public", "json");
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
+    }
+
+    // create floor json directory if it doesn't exist
+    const floorDir = getJSONDirPath(buildingCode);
+    if (!fs.existsSync(floorDir)) {
+      fs.mkdirSync(floorDir);
     }
 
     // write graph to -graph.json
