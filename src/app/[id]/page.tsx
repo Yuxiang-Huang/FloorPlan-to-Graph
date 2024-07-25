@@ -134,6 +134,14 @@ const Page = ({ params }: { params: { id: string } }) => {
   }, [searchParams]);
 
   const [loadingText, setLoadingText] = useState<string>("Loading");
+  const [loadingFailed, setLoadingFailed] = useState<boolean>(false);
+
+  const loadingData = {
+    loadingText,
+    setLoadingText,
+    setLoadingFailed,
+  };
+
   const [saveStatus, setSaveStatus] = useState<SaveStatus>(Saved);
   const [mode, setMode] = useState<Mode>(GRAPH_SELECT);
 
@@ -153,6 +161,20 @@ const Page = ({ params }: { params: { id: string } }) => {
     );
   };
 
+  const renderLoadingText = () => {
+    if (loadingText) {
+      if (loadingFailed) {
+        return (
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2">
+            <p className="text-nowrap text-3xl text-red-500">{loadingText}</p>
+          </div>
+        );
+      } else {
+        return <Loader loadingText={loadingText} />;
+      }
+    }
+  };
+
   return (
     <div>
       <div className="absolute inset-0 z-50 h-min">
@@ -161,10 +183,10 @@ const Page = ({ params }: { params: { id: string } }) => {
 
       {floorLevelSelected && (
         <>
-          {loadingText && <Loader loadingText={loadingText} />}
+          {renderLoadingText()}
 
           <FloorLevelsProvider floorLevels={floorLevels}>
-            <LoadingProvider loadingData={{ loadingText, setLoadingText }}>
+            <LoadingProvider loadingData={loadingData}>
               <SaveStatusProvider setSaveStatus={setSaveStatus}>
                 <ModeProvider modeData={{ mode, setMode }}>
                   <MainDisplay

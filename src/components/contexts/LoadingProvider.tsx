@@ -3,11 +3,13 @@ import React, { Dispatch, SetStateAction, createContext } from "react";
 export interface LoadingData {
   loadingText: string;
   setLoadingText: Dispatch<SetStateAction<string>>;
+  setLoadingFailed: Dispatch<SetStateAction<boolean>>;
 }
 
 export const LoadingContext = createContext<LoadingData>({
   loadingText: "",
   setLoadingText: () => {},
+  setLoadingFailed: () => {},
 });
 
 interface Props {

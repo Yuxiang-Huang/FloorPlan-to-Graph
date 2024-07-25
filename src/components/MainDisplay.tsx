@@ -52,7 +52,8 @@ interface Props {
 const MainDisplay = ({ floorCode, idSelected, setIdSelected }: Props) => {
   const router = useRouter();
 
-  const { loadingText, setLoadingText } = useContext(LoadingContext);
+  const { loadingText, setLoadingText, setLoadingFailed } =
+    useContext(LoadingContext);
   const { mode, setMode } = useContext(ModeContext);
 
   const [shortcutsDisabled, setShortcutsDisabled] = useState<boolean>(false);
@@ -168,7 +169,10 @@ const MainDisplay = ({ floorCode, idSelected, setIdSelected }: Props) => {
       // handle error
       if (!parseResponse.ok) {
         console.error(parsedBody.error);
-        setLoadingText("Failed to parse PDF! Check console for detailed error");
+        setLoadingFailed(true);
+        setLoadingText(
+          "Failed to parse the PDF! Check the console for detailed error."
+        );
         return;
       }
 
@@ -230,7 +234,7 @@ const MainDisplay = ({ floorCode, idSelected, setIdSelected }: Props) => {
 
       setLoadingText("");
     },
-    [floorCode, setLoadingText]
+    [floorCode, setLoadingFailed, setLoadingText]
   );
 
   // fetch data
