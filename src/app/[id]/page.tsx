@@ -58,7 +58,7 @@ const Page = ({ params }: { params: { id: string } }) => {
 
       // handle error
       if (!response.ok) {
-        console.error(body);
+        console.error(body.error);
         return;
       }
 

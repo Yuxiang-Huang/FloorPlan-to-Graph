@@ -117,7 +117,7 @@ const PolygonTab = ({ floorCode }: Props) => {
     const body = await result.json();
 
     if (!result.ok) {
-      console.error(body);
+      console.error(body.error);
       return;
     }
 

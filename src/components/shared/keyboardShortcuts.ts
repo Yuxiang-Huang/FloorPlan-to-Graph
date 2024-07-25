@@ -90,7 +90,7 @@ export const deleteNode = async (
 
       // handle error
       if (!response.ok) {
-        console.error(body);
+        console.error(body.error);
       }
     }
   }

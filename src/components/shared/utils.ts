@@ -95,7 +95,7 @@ export const addDoorsToGraph = async (floorCode, doorInfos, type, setNodes) => {
   // handle error
   if (!response.ok) {
     if (response.status == 500) {
-      console.error(body);
+      console.error(body.error);
       return;
     } else {
       toast.error(body.errorMessage);
