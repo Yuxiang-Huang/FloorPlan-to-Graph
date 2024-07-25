@@ -8,14 +8,7 @@ export async function POST(request: Request) {
     const fileName = requestData.fileName;
     const file = requestData.file;
 
-    const PDFDirectory = path.join(process.cwd(), "public", "pdf");
-
-    // create pdf dir if it doesn't exist
-    if (!fs.existsSync(PDFDirectory)) {
-      fs.mkdirSync(PDFDirectory);
-    }
-
-    const FloorPlanPDFDirectory = path.join(
+    const floorPDFDirectory = path.join(
       process.cwd(),
       "public",
       "pdf",
@@ -23,11 +16,11 @@ export async function POST(request: Request) {
     );
 
     // create floor pdf directory if it doesn't exist
-    if (!fs.existsSync(FloorPlanPDFDirectory)) {
-      fs.mkdirSync(FloorPlanPDFDirectory);
+    if (!fs.existsSync(floorPDFDirectory)) {
+      fs.mkdirSync(floorPDFDirectory);
     }
 
-    const filePath = path.join(FloorPlanPDFDirectory, fileName);
+    const filePath = path.join(floorPDFDirectory, fileName);
 
     const uint8Array = Buffer.from(file, "base64");
 
