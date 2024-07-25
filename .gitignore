@@ -44,3 +44,6 @@ dist
 
 .venv
 venv
+
+*.json
+*.pdf
