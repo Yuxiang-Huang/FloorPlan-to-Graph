@@ -18,7 +18,7 @@ const App: React.FC = () => {
 
       // handle error
       if (!response.ok) {
-        console.error(body);
+        console.error(body.error);
         return;
       }
 
@@ -27,9 +27,31 @@ const App: React.FC = () => {
     getBuildingCodes();
   }, []);
 
+  const downloadJsonFiles = async () => {
+    const response = await fetch("/api/downloadJsonFiles", {
+      method: "GET",
+    });
+
+    // Create a temporary anchor element to trigger the download
+    const url = window.URL.createObjectURL(await response.blob());
+    const link = document.createElement("a");
+    link.href = url;
+    // Setting filename received in response
+    link.setAttribute("download", "JSON Files.zip");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div>
-      <div className="m-2 flex flex-row-reverse text-2xl">
+      <div className="m-2 flex justify-between text-2xl">
+        <button
+          className="rounded border border-green-500 p-2 text-sm hover:bg-gray-200"
+          onClick={downloadJsonFiles}
+        >
+          Download JSON Files
+        </button>
         <Link href={"PDFUpload"}>
           <CiSquarePlus
             className="text-2xl text-blue-500 hover:text-blue-700"
@@ -37,6 +59,7 @@ const App: React.FC = () => {
           />
         </Link>
       </div>
+
       <div className="m-5 flex flex-wrap gap-8">
         {buildingCodes.map((buildingCode) => (
           <Link
