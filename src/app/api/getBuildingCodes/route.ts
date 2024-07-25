@@ -2,16 +2,9 @@ import { NextResponse } from "next/server";
 import { readdir } from "fs/promises";
 import fs from "fs";
 import { getPDFDirPath } from "../apiUtils";
-import path from "path";
 
 export async function GET() {
   try {
-    const tempFolderPath = path.join(process.cwd(), "tmp");
-    // create tmp dir if it doesn't exist
-    if (!fs.existsSync(tempFolderPath)) {
-      fs.mkdirSync(tempFolderPath);
-    }
-
     const pdfFolderPath = getPDFDirPath();
 
     // create pdf dir if it doesn't exist

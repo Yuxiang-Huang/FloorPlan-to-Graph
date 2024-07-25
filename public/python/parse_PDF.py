@@ -137,4 +137,4 @@ def parse_pdf(pdf_path):
 
 
 if __name__ == "__main__":
-    parse_pdf("tmp/pdf/" + sys.argv[1])
+    parse_pdf("public/pdf/" + sys.argv[1])

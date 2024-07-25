@@ -4,7 +4,7 @@ import archiver from "archiver";
 
 export async function GET() {
   try {
-    const jsonDirPath = path.join(process.cwd(), "tmp", "json");
+    const jsonDirPath = path.join(process.cwd(), "public", "json");
 
     const archive = archiver("zip", {
       zlib: { level: 9 }, // Sets the compression level.

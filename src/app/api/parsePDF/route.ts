@@ -62,7 +62,7 @@ export async function POST(request: Request) {
     const parsedJSON = JSON.parse(stdout);
 
     // create json directory if it doesn't exist
-    const jsonDir = path.join(process.cwd(), "tmp", "json");
+    const jsonDir = path.join(process.cwd(), "public", "json");
     if (!fs.existsSync(jsonDir)) {
       fs.mkdirSync(jsonDir);
     }
