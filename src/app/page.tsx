@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { buildingCodeToName } from "../components/shared/buildingCodeToName";
+import { getBuildingName } from "../components/shared/buildingCodeToName";
 import { CiSquarePlus } from "react-icons/ci";
 
 const App: React.FC = () => {
@@ -44,7 +44,7 @@ const App: React.FC = () => {
             key={buildingCode}
             className="cursor-pointer rounded-lg border border-gray-300 p-4 shadow-md transition duration-200 ease-in-out hover:scale-105 hover:shadow-lg"
           >
-            {buildingCodeToName[buildingCode]}
+            {getBuildingName(buildingCode)}
           </Link>
         ))}
       </div>

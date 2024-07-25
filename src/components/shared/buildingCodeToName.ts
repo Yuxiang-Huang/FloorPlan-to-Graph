@@ -27,3 +27,11 @@ export const buildingCodeToName = {
 
   MGE: "E-Tower",
 };
+
+export const getBuildingName = (buildingCode: string) => {
+  if (buildingCodeToName[buildingCode]) {
+    return buildingCodeToName[buildingCode];
+  } else {
+    return buildingCode;
+  }
+};
