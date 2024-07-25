@@ -62,46 +62,9 @@ const Page = ({ params }: { params: { id: string } }) => {
         return;
       }
 
-      const getFloorLevel = (f: string) => {
-        f = f.replace(".pdf", "");
-        const farr = f.split("-");
-        return farr[farr.length - 1];
-      };
+      const newFloorLevels = body.newFloorLevels;
 
-      const sortFloorLevels = (floorLevels: string[]) => {
-        const floorCodeOrder = [
-          "PH",
-          "9",
-          "8",
-          "7",
-          "6",
-          "5",
-          "4",
-          "3",
-          "2",
-          "M",
-          "1",
-          "A",
-          "B",
-          "C",
-          "D",
-          "E",
-          "F",
-          "LL",
-          "EV",
-        ];
-
-        const floorLevelSort = (f1: string, f2: string) => {
-          return floorCodeOrder.indexOf(f2) - floorCodeOrder.indexOf(f1);
-        };
-
-        return floorLevels.sort(floorLevelSort);
-      };
-
-      const newFloorLevels = sortFloorLevels(
-        body.result.map((floorCode) => getFloorLevel(floorCode))
-      );
-
+      // go the middle floor if the floor is not specified in the url
       if (floorInfoArr.length == 1) {
         router.push(
           buildingCode +
@@ -110,7 +73,7 @@ const Page = ({ params }: { params: { id: string } }) => {
         );
       }
 
-      setFloorLevels(sortFloorLevels(newFloorLevels));
+      setFloorLevels(newFloorLevels);
     };
     getFloorLevels();
   }, [buildingCode, floorInfoArr.length, router]);

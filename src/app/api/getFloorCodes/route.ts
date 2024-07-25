@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import fs from "fs/promises";
 import { getPDFDirPath } from "../apiUtils";
 import path from "path";
+import { floorCodeOrder } from "./floorCodeOrder";
 
 export async function GET(request: Request) {
   try {
@@ -23,9 +24,27 @@ export async function GET(request: Request) {
 
     const folders = await fs.readdir(path.join(pdfFolderPath, buildingCode));
 
+    const newFloorLevels = folders.filter((name) => name != ".DS_Store");
+
+    const getFloorLevel = (f: string) => {
+      f = f.replace(".pdf", "");
+      const farr = f.split("-");
+      return farr[farr.length - 1];
+    };
+
+    const sortFloorLevels = (floorLevels: string[]) => {
+      const floorLevelSort = (f1: string, f2: string) => {
+        return floorCodeOrder.indexOf(f2) - floorCodeOrder.indexOf(f1);
+      };
+
+      return floorLevels.sort(floorLevelSort);
+    };
+
     return new NextResponse(
       JSON.stringify({
-        result: folders.filter((name) => name != ".DS_Store"),
+        newFloorLevels: sortFloorLevels(
+          newFloorLevels.map((floorCode) => getFloorLevel(floorCode))
+        ),
       }),
       {
         status: 200,

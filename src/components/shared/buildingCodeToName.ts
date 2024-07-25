@@ -1,6 +1,5 @@
 export const buildingCodeToName = {
   AN: "Ansys Hall",
-  BPH: "Baker and Porter Halls",
   BH: "Baker Hall",
   CFA: "College of Fine Arts",
   CUC: "Cohon University Center",
