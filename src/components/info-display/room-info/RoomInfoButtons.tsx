@@ -153,7 +153,7 @@ const RoomInfoTable = ({ floorCode }: Props) => {
       const walkwayBody = await walkwayResult.json();
 
       if (!walkwayResult.ok) {
-        console.log(walkwayBody);
+        console.error(walkwayBody.error);
         return;
       }
 

@@ -178,6 +178,13 @@ const MainDisplay = ({ floorCode, idSelected, setIdSelected }: Props) => {
 
       const parsedRes = parsedBody.result;
 
+      if (parsedRes["floorCodeDNE"]) {
+        toast.warn(
+          "Couldn't add type and alias because this floor code does not exist in Nicolas-export.json!",
+          { autoClose: 5000 }
+        );
+      }
+
       setWidth(parsedRes["width"]);
       setHeight(parsedRes["height"]);
       setWalls(parsedRes["walls"]);
@@ -206,7 +213,7 @@ const MainDisplay = ({ floorCode, idSelected, setIdSelected }: Props) => {
           const walkwayBody = await walkwayResult.json();
 
           if (!walkwayResult.ok) {
-            console.log(walkwayBody);
+            console.error(walkwayBody.error);
             return;
           }
         }
@@ -219,7 +226,7 @@ const MainDisplay = ({ floorCode, idSelected, setIdSelected }: Props) => {
       const graphBody = await graphResult.json();
 
       if (!graphResult.ok) {
-        console.log(graphBody);
+        console.error(graphBody.error);
         return;
       }
 

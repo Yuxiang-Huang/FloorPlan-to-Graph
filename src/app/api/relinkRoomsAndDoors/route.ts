@@ -21,7 +21,7 @@ export async function POST(request: Request) {
     if (stderr) {
       return new NextResponse(
         JSON.stringify({
-          python_stderr_error: stderr,
+          error: stderr,
         }),
         {
           status: 500,
