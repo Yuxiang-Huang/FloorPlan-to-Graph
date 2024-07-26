@@ -7,6 +7,9 @@
 This project is an interactive interface that allows the user to generate graphs from floor plan pdfs.
 
 ![Floorplan PDF](/public/img/floorplan-pdf.png)
+
+Image Source: <https://www.cmu.edu/enterprise-space/esim/services/floor-plans/index.html>
+
 ![Graph](public/img/graph.png)
 
 ## To Run the Project
