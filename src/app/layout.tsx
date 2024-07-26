@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   icons: {
     icon: "icon.png",
   },
-  title: "CMU Maps Graph Visualization",
+  title: "Floor Plan to Graph",
 };
 
 export default function RootLayout({

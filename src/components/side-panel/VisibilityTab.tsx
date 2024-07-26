@@ -66,15 +66,13 @@ const VisibilityTab = ({ floorCode, parsePDF }: Props) => {
       )}
 
       {/* Regenerate button only for debugging purpose so not displayed */}
-      {
-        // editPolygon &&
+      {editPolygon &&
         !editPolygon &&
-          renderSidePanelButton(
-            "Regenerate",
-            handleRegenerate,
-            RED_BUTTON_STYLE + " text-base"
-          )
-      }
+        renderSidePanelButton(
+          "Regenerate",
+          handleRegenerate,
+          RED_BUTTON_STYLE + " text-base"
+        )}
     </div>
   );
 };
