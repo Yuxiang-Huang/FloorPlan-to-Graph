@@ -541,7 +541,7 @@ const FloorDisplay = ({
       const newNode: Node = {
         pos: adjustPosition(pos, offset, scale),
         neighbors: {},
-        roomId: findRoomId(rooms, e.target.getPointerPosition()),
+        roomId: findRoomId(rooms, adjustPosition(pos, offset, scale)),
       };
 
       const newNodes = { ...nodes };
