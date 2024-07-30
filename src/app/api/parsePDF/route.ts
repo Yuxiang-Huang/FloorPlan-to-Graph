@@ -9,7 +9,6 @@ import {
   getJSONDirPath,
   getOutlineJsonFilePath,
 } from "../apiUtils";
-import { ALWAYS_REGENERATE } from "../../../API-Settings";
 import path from "path";
 
 export async function POST(request: Request) {
@@ -23,7 +22,7 @@ export async function POST(request: Request) {
     // check if can read from already calculated json file
     const jsonFilePath = getOutlineJsonFilePath(floorCode);
 
-    if (!ALWAYS_REGENERATE && !regenerate && fs.existsSync(jsonFilePath)) {
+    if (!regenerate && fs.existsSync(jsonFilePath)) {
       const data = await readFile(jsonFilePath, "utf8");
 
       // extra fields to let frontend know how data is retrieved

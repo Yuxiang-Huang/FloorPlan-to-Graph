@@ -8,6 +8,8 @@ import {
 import { DisplaySettingsContext } from "../contexts/DisplaySettingsProvider";
 import { useRouter } from "next/navigation";
 
+const SHOW_REGENERATE_BUTTON = false;
+
 interface Props {
   floorCode: string;
   parsePDF: (regnerate: boolean) => void;
@@ -65,8 +67,7 @@ const VisibilityTab = ({ floorCode, parsePDF }: Props) => {
         setShowLabels(!showLabels)
       )}
 
-      {/* Regenerate button only for debugging purpose so not displayed */}
-      {editPolygon &&
+      {SHOW_REGENERATE_BUTTON &&
         !editPolygon &&
         renderSidePanelButton(
           "Regenerate",

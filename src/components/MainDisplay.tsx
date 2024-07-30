@@ -9,8 +9,6 @@ import {
 
 import { ID, Node, RoomInfo, DoorInfo, WalkwayTypeList } from "./shared/types";
 
-import { TEST_WALKWAYS, TEST_LOADER } from "../API-Settings";
-
 // components
 import SidePanel from "./side-panel/SidePanel";
 import ZoomPanWrapper from "./zoom-pan/ZoomPanWrapper";
@@ -153,8 +151,6 @@ const MainDisplay = ({ floorCode, idSelected, setIdSelected }: Props) => {
     async (regenerate = false) => {
       setLoadingText("Parsing PDF");
 
-      if (TEST_LOADER) await new Promise((r) => setTimeout(r, 1000000));
-
       // parsing the file
       const parseResponse = await fetch("/api/parsePDF", {
         method: "POST",
@@ -194,7 +190,7 @@ const MainDisplay = ({ floorCode, idSelected, setIdSelected }: Props) => {
 
       setLoadingText("Detecting Walkways");
 
-      if (!parsedRes["calculated"] || TEST_WALKWAYS) {
+      if (!parsedRes["calculated"]) {
         const newRooms = parsedRes["rooms"];
         const walkways = Object.keys(newRooms).filter((roomId) =>
           WalkwayTypeList.includes(newRooms[roomId].type)
