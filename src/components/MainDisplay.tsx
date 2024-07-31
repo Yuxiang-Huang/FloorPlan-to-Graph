@@ -101,8 +101,6 @@ const MainDisplay = ({ floorCode, idSelected, setIdSelected }: Props) => {
   };
 
   // display data
-  const [width, setWidth] = useState<number>(0); //window.innerWidth
-  const [height, setHeight] = useState<number>(0); //window.innerHeight
   const [walls, setWalls] = useState<number[][]>([]);
   const [doors, setDoors] = useState<Record<ID, DoorInfo>>({});
   const [roomlessDoors, setRoomlessDoors] = useState<number[][]>([]);
@@ -110,8 +108,6 @@ const MainDisplay = ({ floorCode, idSelected, setIdSelected }: Props) => {
   const [nodes, setNodes] = useState<Record<ID, Node>>({});
 
   const outlineData = {
-    width,
-    height,
     walls,
     doors,
     setDoors,
@@ -181,8 +177,6 @@ const MainDisplay = ({ floorCode, idSelected, setIdSelected }: Props) => {
         );
       }
 
-      setWidth(parsedRes["width"]);
-      setHeight(parsedRes["height"]);
       setWalls(parsedRes["walls"]);
       setDoors(parsedRes["doors"]);
       setRoomlessDoors(parsedRes["roomlessDoors"]);
@@ -348,7 +342,7 @@ const MainDisplay = ({ floorCode, idSelected, setIdSelected }: Props) => {
                             parsePDF={parsePDF}
                           />
                         </div>
-                        <div className="relative left-60 p-4 pt-20">
+                        <div className="relative left-40 p-4 pt-20">
                           <ZoomPanWrapper floorCode={floorCode} />
                         </div>
                         {getNodeIdSelected(idSelected) && (

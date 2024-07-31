@@ -70,7 +70,7 @@ const InfoDisplay = ({ floorCode }: Props) => {
 
     return (
       <button
-        className="mr-2 rounded border bg-red-500 p-1 hover:bg-red-700"
+        className="mr-2 rounded border bg-red-500 p-2 text-white hover:bg-red-700"
         onClick={createRoom}
       >
         Create Room

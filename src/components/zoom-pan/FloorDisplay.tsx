@@ -99,8 +99,7 @@ const FloorDisplay = ({
   const { showOutline, showNodes, showEdges, showLabels } = useContext(
     VisibilitySettingsContext
   );
-  const { width, height, walls, doors, roomlessDoors } =
-    useContext(OutlineContext);
+  const { walls, doors, roomlessDoors } = useContext(OutlineContext);
   const { rooms, setRooms } = useContext(RoomsContext);
   const { nodes, setNodes } = useContext(GraphContext);
 
@@ -545,7 +544,22 @@ const FloorDisplay = ({
       };
 
       const newNodes = { ...nodes };
-      newNodes[uuidv4()] = newNode;
+
+      const newNodeId = uuidv4();
+      newNodes[newNodeId] = newNode;
+
+      const nodeIdSelected = getNodeIdSelected(idSelected);
+
+      if (nodeIdSelected) {
+        const newDist = dist(
+          newNodes[newNodeId].pos,
+          newNodes[nodeIdSelected].pos
+        );
+        newNodes[newNodeId].neighbors[nodeIdSelected] = { dist: newDist };
+        newNodes[nodeIdSelected].neighbors[newNodeId] = { dist: newDist };
+      }
+
+      router.push(`${floorCode}?nodeId=${newNodeId}`);
 
       setNodes(newNodes);
 
@@ -619,8 +633,8 @@ const FloorDisplay = ({
   return (
     <>
       <Stage
-        width={width}
-        height={height}
+        width={window.innerWidth}
+        height={window.innerHeight}
         onMouseDown={(e) => setCanPan(e.target === e.target.getStage())}
         onMouseUp={() => setCanPan(true)}
         onClick={(e) => handleStageClick(e)}

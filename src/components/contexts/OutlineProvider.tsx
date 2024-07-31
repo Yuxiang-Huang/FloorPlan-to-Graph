@@ -2,8 +2,6 @@ import React, { Dispatch, SetStateAction, createContext } from "react";
 import { DoorInfo, ID } from "../shared/types";
 
 export interface OutlineData {
-  width: number;
-  height: number;
   walls: number[][];
 
   doors: Record<ID, DoorInfo>;
@@ -14,8 +12,6 @@ export interface OutlineData {
 }
 
 export const OutlineContext = createContext<OutlineData>({
-  width: 0,
-  height: 0,
   walls: [],
   doors: {},
   setDoors: () => {},

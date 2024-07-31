@@ -174,16 +174,18 @@ const Page = ({ params }: { params: { id: string } }) => {
 
           <HelpInfo />
 
-          <div className="absolute top-16 h-full">
-            <div
-              className={`sticky top-4 m-1 rounded border border-gray-500 p-1 ${saveStatusToColor[saveStatus]}`}
-            >
-              {saveStatus}
+          <div className="fixed top-0 h-svh w-40 bg-gray-100">
+            <div className="absolute top-16 h-full">
+              <div
+                className={`sticky top-4 m-1 rounded border border-gray-500 p-1 ${saveStatusToColor[saveStatus]}`}
+              >
+                {saveStatus}
+              </div>
             </div>
-          </div>
 
-          {renderResetModeButtton()}
-          <div className="fixed bottom-0 m-2">Mode: {mode}</div>
+            {renderResetModeButtton()}
+            <div className="fixed bottom-0 m-2">Mode: {mode}</div>
+          </div>
         </>
       )}
 
