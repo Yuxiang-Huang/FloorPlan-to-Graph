@@ -2,8 +2,17 @@ import math
 import uuid
 from scipy.cluster.hierarchy import linkage, fcluster
 from scipy.spatial.distance import pdist
-from shapely import Point, LineString  # type: ignore
+from shapely import Point, LineString, LinearRing  # type: ignore
 from shapely.geometry import shape  # type: ignore
+
+
+# If the first two coordinates of a ring are the same,
+# Shapely gives RuntimeWarning: invalid value encountered in distance
+def clean_ring_coordinates(ring):
+    coords = list(ring.coords)
+    if len(coords) > 1 and coords[0] == coords[1]:
+        coords.pop(0)
+    return LinearRing(coords)
 
 
 # to prevent two doors in a room
@@ -52,7 +61,7 @@ def get_end_points_from_lines(lines, polygon):
 
         for line in lines:
             for point in (Point(line[0], line[1]), Point(line[-2], line[-1])):
-                dist = point.distance(polygon.exterior)
+                dist = point.distance(clean_ring_coordinates(polygon.exterior))
 
                 for interior in polygon.interiors:
                     dist = min(dist, point.distance(interior))
